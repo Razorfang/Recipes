@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMainWindow, QWidget, QVBoxLayout
+from PySide6.QtWidgets import QMainWindow, QWidget, QVBoxLayout 
 from MenuBar import MenuBar 
 from FilterWindow import FilterWindow
 from SearchButton import SearchButton
@@ -12,36 +12,16 @@ class MainWindow(QMainWindow):
         # Set general properties
         super().__init__(parent)
         self.setWindowTitle(title)
-        #self.setLayout(QVBoxLayout())
 
         # Create menu bar
-        self._menuBar = MenuBar()
-        self.setMenuBar(self._menuBar)
+        self.setMenuBar(MenuBar())
 
-        # Window containing search filters
-        self._filterWindow = FilterWindow()
-        #self._filterWindow.show()
-
-        # Search button
-        self._searchButton = SearchButton()
-        #self._searchButton.show()
-
-        # Split these two into a grid layout
-        self._filterWidget = QWidget()
+        # Create vertical layout containing filters and search button
+        filterWidget = QWidget()
 
         filterLayout = QVBoxLayout()
-        filterLayout.addWidget(self._filterWindow)
-        filterLayout.addWidget(self._searchButton)
-        
+        filterLayout.addWidget(FilterWindow())
+        filterLayout.addWidget(SearchButton())
 
-        self._filterWidget.setLayout(filterLayout)
-        #self.setLayout(filterLayout)
-        self.setCentralWidget(self._filterWidget)
-        #self._filterGroup = QGroupBox("Find Recipes")
-        #self._filterGroup.setLayout(QVBoxLayout())
-        #self.layout().addWidget(self._filterGroup)
-        #self.layout().addStretch()
-
-        #self._filters = QHBoxLayout()
-        #self._filters.addWidget(self._filterWindow)
-        #self._filterGroup.addLayout(self._filters)
+        filterWidget.setLayout(filterLayout)
+        self.setCentralWidget(filterWidget)
