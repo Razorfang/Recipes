@@ -1,18 +1,31 @@
-from PySide6.QtWidgets import QWidget, QHBoxLayout, QLabel, QLineEdit, QRadioButton
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit, QRadioButton
 
 class FilterWindow(QWidget):
 
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self._layout = QHBoxLayout()
+        # TODO:
+        # Title should be arbitrary text
+        # Ingredient should use a radix search for existing ingredients
+        # Nutrients and dietary requirements should do the same
+        # Prep and cook times should be in days, hours, and minutes
+        # Total time is just the sum of the two
 
-        self._label = QLabel("Test")
-        self._layout.addWidget(self._label)
+        layout = QVBoxLayout()
+        layout.addWidget(QLabel("Search filters"))
+        for label in ["Title", "Ingredient", "Nutrient", "Dietary", "Prep Time", "Cook Time", "Total Time"]:
+            layout.addWidget(self._createSearchOption(label))
 
-        self._button1 = QRadioButton("Button 1")
-        self._button1.setChecked(True)
-        self._layout.addWidget(self._button1)
 
-        self.setLayout(self._layout)
+        self.setLayout(layout)
 
+    def _createSearchOption(self, label):
+        widget = QWidget()
+
+        layout = QHBoxLayout()
+        layout.addWidget(QLabel(label))
+        layout.addWidget(QLineEdit())
+
+        widget.setLayout(layout)
+        return widget
