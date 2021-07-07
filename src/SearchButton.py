@@ -1,7 +1,11 @@
-class SearchButton():
-    '''def __init__(self, parent=None):
-        super().__init__(parent)'''
+from PySide6.QtWidgets import QPushButton
 
-    def __init__(self):
-        pass
+class SearchButton(QPushButton):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setText("Search recipes")
+        self.clicked.connect(self._onClick)
+
+    def _onClick(self):
+        print("Click")
 

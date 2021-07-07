@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QMainWindow, QGroupBox, QVBoxLayout, QHBoxLayout, QGridLayout
+from PySide6.QtWidgets import QMainWindow, QWidget, QVBoxLayout
 from MenuBar import MenuBar 
 from FilterWindow import FilterWindow
 from SearchButton import SearchButton
@@ -23,16 +23,20 @@ class MainWindow(QMainWindow):
         #self._filterWindow.show()
 
         # Search button
-        #self._searchButton = SearchButton()
+        self._searchButton = SearchButton()
         #self._searchButton.show()
 
         # Split these two into a grid layout
-        #filterLayout = QVBoxLayout()
-        #filterLayout.addWidget(self._filterWindow)
+        self._filterWidget = QWidget()
 
+        filterLayout = QVBoxLayout()
+        filterLayout.addWidget(self._filterWindow)
+        filterLayout.addWidget(self._searchButton)
+        
 
+        self._filterWidget.setLayout(filterLayout)
         #self.setLayout(filterLayout)
-        self.setCentralWidget(self._filterWindow)
+        self.setCentralWidget(self._filterWidget)
         #self._filterGroup = QGroupBox("Find Recipes")
         #self._filterGroup.setLayout(QVBoxLayout())
         #self.layout().addWidget(self._filterGroup)
