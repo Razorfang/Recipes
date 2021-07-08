@@ -19,9 +19,19 @@ class MainWindow(QMainWindow):
         # Create vertical layout containing filters and search button
         filterWidget = QWidget()
 
+        self._filterWindow = FilterWindow()
         filterLayout = QVBoxLayout()
-        filterLayout.addWidget(FilterWindow())
-        filterLayout.addWidget(SearchButton())
+        filterLayout.addWidget(self._filterWindow)
+        filterLayout.addWidget(SearchButton(method=self.findRecipes))
 
         filterWidget.setLayout(filterLayout)
         self.setCentralWidget(filterWidget)
+
+    def findRecipes(self):
+        print(self._filterWindow.getTitleText())
+        print(self._filterWindow.getIngredientText())
+        print(self._filterWindow.getNutrientText())
+        print(self._filterWindow.getDietaryText())
+        print(self._filterWindow.getPrepTime())
+        print(self._filterWindow.getCookTime())
+        print(self._filterWindow.getTotalTime())

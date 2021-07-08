@@ -20,10 +20,7 @@ if __name__ == "__main__":
     cur = con.cursor()
 
     # Show all ingredients
-    text = ""
-    for row in cur.execute("SELECT ingredient_description FROM ingredients;"):
-        text += f'{row[0]}||||\n'
-
+    text = str(cur.execute("SELECT ingredient_description FROM ingredients;").fetchall())
     con.close()
 
     # Create the main window

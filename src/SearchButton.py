@@ -1,11 +1,12 @@
 from PySide6.QtWidgets import QPushButton
 
 class SearchButton(QPushButton):
-    def __init__(self, parent=None):
+    def __init__(self, method, parent=None):
         super().__init__(parent)
         self.setText("Search recipes")
-        self.clicked.connect(self._onClick)
+        self.setOnClickMethod(method)
 
-    def _onClick(self):
-        print("Click")
+    def setOnClickMethod(self, method):
+        self.clicked.connect(method)
+
 
